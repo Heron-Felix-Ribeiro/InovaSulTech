@@ -1,0 +1,14 @@
+spring:
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/inovasultech
+    username: postgres
+    password: Sen@c2023
+    driverClassName: org.postgresql.Driver
+  security:
+    secret: "Ht5748ikulPO@_12"
+    expiration_time: 1

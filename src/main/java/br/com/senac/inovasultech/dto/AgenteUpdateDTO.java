@@ -1,26 +1,26 @@
-package br.com.senac.inovasultech.entitys;
+package br.com.senac.inovasultech.dto;
 
-import jakarta.persistence.*;
+import br.com.senac.inovasultech.entitys.Agente;
 
-import java.util.List;
+public class AgenteUpdateDTO {
 
-@Entity
-public class Agente {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
     private String nomeAgente;
-    @Column
     private String cnpj;
-    @Column
     private String descricao;
-    @ManyToOne
-    @JoinColumn(name = "tipoAgente")
-    private TipoAgente tipoAgente;
-    @ManyToMany
-    private List<Endereco> enderecos;
+    private String tipoAgente;
+
+    public AgenteUpdateDTO(Agente agente) {
+        this.id = id;
+        this.nomeAgente = nomeAgente;
+        this.cnpj = cnpj;
+        this.descricao = descricao;
+        this.tipoAgente = tipoAgente;
+    }
+
+    public AgenteUpdateDTO(){
+
+    }
 
     public Long getId() {
         return id;
@@ -54,20 +54,11 @@ public class Agente {
         this.descricao = descricao;
     }
 
-    public TipoAgente getTipoAgente() {
+    public String getTipoAgente() {
         return tipoAgente;
     }
 
-    public void setTipoAgente(TipoAgente tipoAgente) {
+    public void setTipoAgente(String tipoAgente) {
         this.tipoAgente = tipoAgente;
     }
-
-    public List<Endereco> getEnderecos() {
-        return enderecos;
-    }
-
-    public void setEnderecos(List<Endereco> enderecos) {
-        this.enderecos = enderecos;
-    }
-
 }

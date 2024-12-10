@@ -14,9 +14,6 @@ public class Endereco {
     private String bairro;
     @Column
     private String cep;
-   /* @ManyToOne
-    @JoinColumn(name = "agente_id")
-    private Agente agente;*/
     @ManyToOne
     @JoinColumn(name = "nome_cidade")
     private Cidade cidade;
@@ -53,13 +50,6 @@ public class Endereco {
         this.cep = cep;
     }
 
-    /*public Agente getAgente() {
-        return agente;
-    }
-
-    public void setAgente(Agente agente) {
-        this.agente = agente;
-    }*/
 
     public Cidade getCidade() {
         return cidade;

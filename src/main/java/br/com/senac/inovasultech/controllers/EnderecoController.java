@@ -1,9 +1,7 @@
 package br.com.senac.inovasultech.controllers;
 
 import br.com.senac.inovasultech.dto.EnderecoDTO;
-import br.com.senac.inovasultech.entitys.Endereco;
 import br.com.senac.inovasultech.useCases.endereco.EnderecoService;
-import br.com.senac.inovasultech.useCases.endereco.domains.EnderecoRequestDom;
 import br.com.senac.inovasultech.useCases.endereco.domains.EnderecoResponseDom;
 import br.com.senac.inovasultech.utils.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +37,18 @@ public class EnderecoController {
 
         try {
             return ResponseEntity.ok(enderecoService.listarEnderecos());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(ResponseUtil.parseResponse(e.getMessage()));
+        }
+    }
+
+    @GetMapping("/listar/{id}")
+    public ResponseEntity<?> listarUmEndereco (@PathVariable Long id) {
+
+        try {
+            return ResponseEntity.ok(enderecoService.listarUmEndereco(id));
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest()

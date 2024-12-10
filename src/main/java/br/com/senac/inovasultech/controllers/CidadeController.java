@@ -47,6 +47,19 @@ public class CidadeController {
         }
     }
 
+    @GetMapping("/listar/{id}")
+    public ResponseEntity<?> listarUmaCidade (@PathVariable Long id) {
+
+        try {
+            return ResponseEntity.ok(cidadeService.listarUmaCidade(id));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity
+                    .badRequest()
+                    .body(ResponseUtil.parseResponse(e.getMessage()));
+        }
+    }
+
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<?> deletarCidade (@PathVariable Long id) {
 

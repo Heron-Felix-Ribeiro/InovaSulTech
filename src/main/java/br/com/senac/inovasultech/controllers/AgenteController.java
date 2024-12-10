@@ -1,6 +1,7 @@
 package br.com.senac.inovasultech.controllers;
 
 import br.com.senac.inovasultech.dto.AgenteCreateDTO;
+import br.com.senac.inovasultech.dto.AgenteUpdateDTO;
 import br.com.senac.inovasultech.useCases.agentes.AgentesService;
 import br.com.senac.inovasultech.useCases.agentes.domains.AgenteResponseDom;
 import br.com.senac.inovasultech.utils.ResponseUtil;
@@ -54,7 +55,7 @@ public class AgenteController {
         }
     }
 
-    @GetMapping("listar/{id}")
+    @GetMapping("/listar/{id}")
     public ResponseEntity<?> listarAgenteFiltrados(@PathVariable Long id) {
 
         try {
@@ -67,7 +68,7 @@ public class AgenteController {
     }
 
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<?> atualizarAgente (@PathVariable Long id, @RequestBody AgenteCreateDTO agente){
+    public ResponseEntity<?> atualizarAgente (@PathVariable Long id, @RequestBody AgenteUpdateDTO agente){
 
         try {
             AgenteResponseDom response =

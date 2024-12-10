@@ -53,6 +53,23 @@ public class CidadeService {
         throw new Exception("Não foi possível encontrar cidades cadastradas");
     }
 
+    //Listando apenas uma cidade com base no id fornecido
+    public CidadeDTO listarUmaCidade (Long id) throws Exception {
+
+        Optional<Cidade> cidadeResult = cidadeRepository.findById(id);
+
+        if (!cidadeResult.isEmpty()) {
+
+            Cidade cidade = cidadeResult.get();
+
+            CidadeDTO response = cidadeToCidadeDto(cidade);
+
+            return response;
+        }
+
+        throw new Exception("Cidade não encontrada");
+    }
+
     //Deletando uma cidade pelo ID
     public void deletarCidade (Long cidadeId){
 
@@ -69,6 +86,16 @@ public class CidadeService {
 
 
         throw new RuntimeException("Cidade não encontrada");
+    }
+
+    public CidadeDTO cidadeToCidadeDto (Cidade in) {
+
+        CidadeDTO out = new CidadeDTO();
+        out.setId(in.getId());
+        out.setNomeCidade(in.getNomeCidade());
+        out.setEstado(in.getEstado());
+
+        return out;
     }
 
 }

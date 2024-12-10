@@ -7,6 +7,7 @@ import br.com.senac.inovasultech.useCases.cidade.implement.repository.CidadeRepo
 import br.com.senac.inovasultech.useCases.endereco.domains.EnderecoResponseDom;
 import br.com.senac.inovasultech.useCases.endereco.implement.mapper.EnderecoMapper;
 import br.com.senac.inovasultech.useCases.endereco.implement.repository.EnderecoRepository;
+import br.com.senac.inovasultech.utils.CepUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -67,6 +68,22 @@ public class EnderecoService {
         throw new Exception("Não foi possível encontra enderecos");
     }
 
+    public EnderecoDTO listarUmEndereco (Long id) throws Exception {
+
+        Optional<Endereco> enderecoResult = enderecoRepository.findById(id);
+
+        if (!enderecoResult.isEmpty()){
+
+            Endereco endereco = enderecoResult.get();
+
+            EnderecoDTO response = enderecoToEnderecoDto(endereco);
+
+            return response;
+        }
+
+        throw new Exception("Não foi possível encontra o endereço");
+    }
+
     public EnderecoResponseDom atualizarEndereco (Long id, EnderecoDTO endereco) throws Exception {
 
         Optional<Endereco> optionalEndereco = enderecoRepository.findById(id);
@@ -105,6 +122,10 @@ public class EnderecoService {
     }
 
     public Endereco enderecoDtoToEndereco (EnderecoDTO in) {
+
+        if (!CepUtils.CepValido(in.getCep())) {
+            throw new RuntimeException("CEP inválido");
+        }
 
         Endereco out = new Endereco();
         out.setRua(in.getRua());

@@ -76,8 +76,7 @@ public class UsuarioService {
         Optional<Usuario> usuarioResult = usuarioRepository.findByLogin(usuarioLogin.getLogin());
 
         if (!usuarioResult.isPresent()){
-
-            throw new Exception("Usuário encontrado");
+            throw new Exception("Usuário não encontrado"); // Corrigido
         }
 
         Usuario usuario = usuarioResult.get();
@@ -96,6 +95,7 @@ public class UsuarioService {
 
         throw new Exception("Senha invalida");
     }
+
 
     public List<UsuarioResponseDom> carregarUsuarios () throws Exception {
 

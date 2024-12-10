@@ -11,4 +11,4 @@ spring:
     driverClassName: org.postgresql.Driver
   security:
     secret: "Ht5748ikulPO@_12"
-    expiration_time: 1
+    expiration_time: 5

@@ -2,7 +2,7 @@ name: Aula CI/CD e Teste
 
 on:
     push:
-        branches: {"main"}
+        branches: ["master"]
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
